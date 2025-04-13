@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kafo menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .menu-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .menu-item {
+            width: 100%;
+            aspect-ratio: 1;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item img:hover {
+            transform: scale(1.02);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 15px auto;
+            color: #7f7f7f;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border: 2px solid #7f7f7f;
+            border-radius: 5px;
+            width: fit-content;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 98%;
+            max-height: 98vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .menu-container {
+                padding: 15px;
+            }
+
+            .back-link {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="kafo-menu1.jpg" alt="صورة 1" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu2.jpg" alt="صورة 2" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu3.jpg" alt="صورة 3" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu4.jpg" alt="صورة 4" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu6.jpg" alt="صورة 5" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu7.jpg" alt="صورة 6" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu8.jpg" alt="صورة 6" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu9.jpg" alt="صورة 6" onclick="openModal(this.src)">
+            </div>
+            <div class="menu-item">
+                <img src="kafo-menu88.jpg" alt="صورة 6" onclick="openModal(this.src)">
+            </div>
+        </div>
+        <a href="index.html" class="back-link">return to home page</a>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // Prevent zooming on double tap
+        document.addEventListener('touchend', function(event) {
+            if (event.target.tagName === 'IMG') {
+                event.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
